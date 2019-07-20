@@ -3,13 +3,17 @@ package pl.dominisz.springintroduction.service;
 import java.math.BigDecimal;
 
 public class Order {
-    private BigDecimal amount;
+  private BigDecimal amount;
 
-    public BigDecimal getAmount() {
-        return amount;
-    }
+  public Order(BigDecimal amount) {
+    this.amount = amount;
+  }
 
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
+  public BigDecimal getAmount() {
+    return amount;
+  }
+
+  public void setAmount(BigDecimal amount) {
+    this.amount = amount;
+  }
 }
