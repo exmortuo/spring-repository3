@@ -1,11 +1,20 @@
 package pl.dominisz.springintroduction.service;
 
 public class ChargeResult {
-    public boolean isSuccessful() {
-        return false;
-    }
 
-    public String getDeclineMessage() {
-        return null;
-    }
+  private boolean successful;
+  private String declinedMessage;
+
+  public ChargeResult(boolean successful, String declinedMessage) {
+    this.successful = successful;
+    this.declinedMessage = declinedMessage;
+  }
+
+  public boolean isSuccessful() {
+    return successful;
+  }
+
+  public String getDeclineMessage() {
+    return declinedMessage;
+  }
 }
