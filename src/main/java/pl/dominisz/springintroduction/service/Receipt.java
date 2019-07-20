@@ -39,4 +39,12 @@ public class Receipt {
           return "Charge failed: " + message;
       }
   }
+
+  public boolean isSuccessfull() {
+    return successful;
+  }
+
+  public BigDecimal getAmount() {
+    return amount;
+  }
 }
