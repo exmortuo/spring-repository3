@@ -1,10 +1,15 @@
 package pl.dominisz.springintroduction.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class PayUBillingService implements BillingService {
 
   private final CreditCardProcessor processor;
   private final TransactionLog transactionLog;
 
+  @Autowired
   public PayUBillingService(CreditCardProcessor processor, TransactionLog transactionLog) {
     this.processor = processor;
     this.transactionLog = transactionLog;

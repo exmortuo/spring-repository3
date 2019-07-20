@@ -1,9 +1,11 @@
 package pl.dominisz.springintroduction.service;
 
-import javax.security.auth.callback.CallbackHandler;
+import org.springframework.stereotype.Component;
+
 import java.math.BigDecimal;
 import java.util.Random;
 
+@Component
 public class PayUCreditCardProcessor implements CreditCardProcessor {
 
   private Random random = new Random();
