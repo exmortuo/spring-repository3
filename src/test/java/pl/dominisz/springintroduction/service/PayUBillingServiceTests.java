@@ -2,6 +2,7 @@ package pl.dominisz.springintroduction.service;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import java.math.BigDecimal;
 
@@ -12,8 +13,12 @@ public class PayUBillingServiceTests {
     Order order = new Order(BigDecimal.TEN);
     CreditCard creditCard = new CreditCard("123456", "owner", "123", 1, 2020);
 
-    CreditCardProcessor creditCardProcessor = new PayUCreditCardProcessor();
-    TransactionLog transactionLog = new DatabaseTransactionLog();
+    CreditCardProcessor creditCardProcessor = Mockito.mock(CreditCardProcessor.class);
+    TransactionLog transactionLog = Mockito.mock(TransactionLog.class);
+
+    Mockito.when(creditCardProcessor.charge(creditCard, order.getAmount()))
+        .thenReturn(new ChargeResult(true, ""));
+
     PayUBillingService payUBillingService =
         new PayUBillingService(creditCardProcessor, transactionLog);
 
