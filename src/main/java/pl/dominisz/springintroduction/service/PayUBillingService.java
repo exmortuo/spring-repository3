@@ -2,10 +2,16 @@ package pl.dominisz.springintroduction.service;
 
 public class PayUBillingService implements BillingService {
 
+  private final CreditCardProcessor processor;
+  private final TransactionLog transactionLog;
+
+  public PayUBillingService(CreditCardProcessor processor, TransactionLog transactionLog) {
+    this.processor = processor;
+    this.transactionLog = transactionLog;
+  }
+
   @Override
   public Receipt chargeOrder(Order order, CreditCard creditCard) {
-    CreditCardProcessor processor = new PayUCreditCardProcessor();
-    TransactionLog transactionLog = new DatabaseTransactionLog();
 
     try {
       ChargeResult result = processor.charge(creditCard, order.getAmount());

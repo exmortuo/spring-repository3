@@ -7,8 +7,9 @@ import java.math.BigDecimal;
 public class Application {
 
   public static void main(String[] args) {
-
-    BillingService billingService = new PayUBillingService();
+    CreditCardProcessor creditCardProcessor = new PayUCreditCardProcessor();
+    TransactionLog transactionLog = new DatabaseTransactionLog();
+    BillingService billingService = new PayUBillingService(creditCardProcessor, transactionLog);
 
     Order order = new Order(BigDecimal.TEN);
     CreditCard creditCard = new CreditCard("123456", "holder", "123", 1, 2020);
