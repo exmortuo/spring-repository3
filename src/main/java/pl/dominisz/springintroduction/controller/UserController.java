@@ -3,7 +3,10 @@ package pl.dominisz.springintroduction.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pl.dominisz.springintroduction.converter.Converter;
+import pl.dominisz.springintroduction.model.CreateUserDto;
 import pl.dominisz.springintroduction.model.User;
+import pl.dominisz.springintroduction.model.UserDto;
 import pl.dominisz.springintroduction.service.UserService;
 
 import java.util.List;
@@ -12,15 +15,17 @@ import java.util.List;
 public class UserController {
 
   private final UserService userService;
+  private final Converter<User, UserDto> userUserDtoConverter;
 
   @Autowired
-  public UserController(UserService userService) {
+  public UserController(UserService userService, Converter<User, UserDto> userUserDtoConverter) {
     this.userService = userService;
+    this.userUserDtoConverter = userUserDtoConverter;
   }
 
   @PostMapping("/users")
-  public void createUser(@RequestBody User user) {
-    userService.createUser(user);
+  public ResponseEntity<UserDto> createUser(@RequestBody CreateUserDto user) {
+    return ResponseEntity.ok(userUserDtoConverter.toDto(userService.createUser(user)));
   }
 
   @GetMapping("/users/{id}")
