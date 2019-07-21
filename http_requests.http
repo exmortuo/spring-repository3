@@ -4,7 +4,16 @@ Content-Type: application/json
 {
   "firstName": "Adam",
   "lastName": "Nowak",
-  "email": "adam.nowak@gmail.com"
+  "email": "adam.nowak@gmail.com",
+  "address": "Lublin, Racławickie",
+  "password": "top secret",
+  "creditCard": {
+    "number": "123456",
+    "holder": "Adam Nowak",
+    "verificationCode": "123",
+    "month": 1,
+    "year": 2020
+  }
 }
 
 ###
