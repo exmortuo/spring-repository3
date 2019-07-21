@@ -29,15 +29,9 @@ public class UserController {
   }
 
   @GetMapping("/users/{id}")
-  public ResponseEntity<User> findUser(@PathVariable long id) {
-    return ResponseEntity.of(userService.findUser(id));
-    // to jest równoważne poniższemu
-    //        Optional<User> optionalUser = userService.findUser(id);
-    //        if (optionalUser.isPresent()) {
-    //            return ResponseEntity.ok(optionalUser.get());
-    //        } else {
-    //            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    //        }
+  public ResponseEntity<UserDto> findUser(@PathVariable long id) {
+    return ResponseEntity.of(
+        userService.findUser(id).map(user -> userUserDtoConverter.toDto(user)));
   }
 
   @GetMapping("/users")

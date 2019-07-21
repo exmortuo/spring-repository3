@@ -5,6 +5,7 @@ import pl.dominisz.springintroduction.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class UserRepositoryImpl implements UserRepository {
@@ -18,5 +19,10 @@ public class UserRepositoryImpl implements UserRepository {
     user.setId(index);
     index++;
     return user;
+  }
+
+  @Override
+  public Optional<User> findById(long id) {
+    return users.stream().filter(user -> user.getId() == id).findFirst();
   }
 }
