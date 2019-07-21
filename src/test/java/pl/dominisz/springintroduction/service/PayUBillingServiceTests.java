@@ -14,7 +14,8 @@ public class PayUBillingServiceTests {
 
   @Test
   public void shouldCreateSuccessfulReceipt() {
-    Order order = new Order(BigDecimal.TEN);
+    Order order = new Order();
+    order.setAmount(BigDecimal.TEN);
     CreditCard creditCard = new CreditCard("123456", "owner", "123", 1, 2020);
 
     CreditCardProcessor creditCardProcessor = Mockito.mock(CreditCardProcessor.class);
