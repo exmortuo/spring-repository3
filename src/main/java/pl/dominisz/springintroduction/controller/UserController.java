@@ -10,6 +10,7 @@ import pl.dominisz.springintroduction.model.UserDto;
 import pl.dominisz.springintroduction.service.UserService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class UserController {
@@ -35,7 +36,10 @@ public class UserController {
   }
 
   @GetMapping("/users")
-  public List<User> findUsers() {
-    return userService.findUsers();
+  public ResponseEntity<List<UserDto>> findUsers() {
+    return ResponseEntity.ok(
+        userService.findUsers().stream()
+            .map(user -> userUserDtoConverter.toDto(user))
+            .collect(Collectors.toList()));
   }
 }
