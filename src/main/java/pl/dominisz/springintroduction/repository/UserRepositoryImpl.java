@@ -30,4 +30,9 @@ public class UserRepositoryImpl implements UserRepository {
   public List<User> findAll() {
     return users;
   }
+
+  @Override
+  public boolean existsById(long userId) {
+    return users.stream().anyMatch(user -> user.getId() == userId);
+  }
 }
